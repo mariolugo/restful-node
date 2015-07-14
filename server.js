@@ -7,7 +7,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     mongoose = require('mongoose'),
-    port = process.env.PORT || 8080;
+    port = process.env.PORT || 8080,
+    User = require('./app/models/user');
 
 // connect to our database (hosted on modulus.io)
 mongoose.connect('mongodb://admin:root@novus.modulusmongo.net:27017/ihEnar4i')
