@@ -47,6 +47,20 @@ apiRouter.use(function(req, res, next){
 	next();
 });
 
+
+// test route to make sure everything is working
+// accessed at GET http://localhost:8080/api
+apiRouter.get('/', function(req,res){
+	res.json({ message: 'hooray! welcome to our api!' });
+});
+
+// more routes for our API will happen here
+
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /api
+app.use('/api', apiRouter);
+
+
 // on routes that end in /users
 // ----------------------------------------------------
 apiRouter.route('/users')
@@ -71,17 +85,14 @@ apiRouter.route('/users')
     });
   })
 
-// test route to make sure everything is working
-// accessed at GET http://localhost:8080/api
-apiRouter.get('/', function(req,res){
-	res.json({ message: 'hooray! welcome to our api!' });
-});
-
-// more routes for our API will happen here
-
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', apiRouter);
+  // get all the users (accessed at GET http://localhost:8080/api/users)
+  .get(function(req, res){
+  	User.find(function(err, users){
+  		if(err) res.send(err);
+  		// return the users
+  		res.json(users);
+  	});
+  });
 
 // START THE SERVER
 // ===============================
