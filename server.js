@@ -1,4 +1,5 @@
 //BASE SETUP
+// ============================
 
 //CALL THE PACKAGES
 var express = require('express'),
@@ -7,6 +8,9 @@ var express = require('express'),
     morgan = require('morgan'),
     mongoose = require('mongoose'),
     port = process.env.PORT || 8080;
+
+// connect to our database (hosted on modulus.io)
+mongoose.connect('mongodb://admin:root@novus.modulusmongo.net:27017/ihEnar4i')
 
 // APP CONFIGURATION
 // use body parser so we can grab information from POST requests
